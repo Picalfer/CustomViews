@@ -3,7 +3,12 @@
     <style name="Base.Theme.CustomViews" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="materialButtonStyle">@style/MyButtonStyle</item>
     </style>
 
     <style name="Theme.CustomViews" parent="Base.Theme.CustomViews" />
+
+    <style name="MyButtonStyle" parent="Widget.MaterialComponents.Button">
+        <item name="textAllCaps">false</item>
+    </style>
 </resources>
