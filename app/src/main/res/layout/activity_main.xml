@@ -6,13 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <include
-        android:id="@+id/bottom_buttons"
-        layout="@layout/part_buttons"
+    <com.landfathich.customviews.BottomButtonsView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:bottomProgressMode="false"
+        app:bottomPositiveTextColor="#240885"
+        app:bottomNegativeTextColor="#240885"
+        app:bottomNegativeBackgroundColor="#DDB8B8"
+        app:bottomPositiveBackgroundColor="#309782"
+        app:bottomNegativeButtonText="@string/cancel"
+        app:bottomPositiveButtonText="@string/ok" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,15 +12,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater).also { setContentView(it.root) }
 
-        with(binding.bottomButtons) {
-            negativeButton.text = getString(R.string.cancel)
-            positiveButton.text = getString(R.string.ok)
 
-            positiveButton.setOnClickListener {
-                progress.visibility = View.VISIBLE
-                negativeButton.visibility = View.INVISIBLE
-                positiveButton.visibility = View.INVISIBLE
-            }
-        }
     }
 }
