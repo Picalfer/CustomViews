@@ -8,6 +8,12 @@ import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.landfathich.customviews.databinding.PartButtonsBinding
 
+enum class BottomButtonAction {
+    POSITIVE, NEGATIVE
+}
+
+typealias OnBottomButtonsActionListener = (BottomButtonAction) -> Unit
+
 class BottomButtonsView(
     context: Context,
     attributeSet: AttributeSet?,
@@ -16,6 +22,8 @@ class BottomButtonsView(
 ) : ConstraintLayout(context, attributeSet, defStyleAttr, defStyleRes) {
 
     private val binding: PartButtonsBinding
+
+    private var listener: OnBottomButtonsActionListener? = null
 
     constructor(context: Context, attributeSet: AttributeSet?, defStyleAttr: Int) : this(
         context,
@@ -37,6 +45,7 @@ class BottomButtonsView(
         inflater.inflate(R.layout.part_buttons, this, true)
         binding = PartButtonsBinding.bind(this)
         initializeAttributes(attributeSet, defStyleAttr, defStyleRes)
+        initListeners()
     }
 
     private fun initializeAttributes(
@@ -85,13 +94,32 @@ class BottomButtonsView(
                 progress.visibility = INVISIBLE
             }
 
-            val positiveButtonTextColor = typedArray.getColor(R.styleable.BottomButtonsView_bottomPositiveTextColor, Color.WHITE)
+            val positiveButtonTextColor = typedArray.getColor(
+                R.styleable.BottomButtonsView_bottomPositiveTextColor,
+                Color.WHITE
+            )
             positiveButton.setTextColor(positiveButtonTextColor)
 
-            val negativeButtonTextColor = typedArray.getColor(R.styleable.BottomButtonsView_bottomNegativeTextColor, Color.BLACK)
+            val negativeButtonTextColor = typedArray.getColor(
+                R.styleable.BottomButtonsView_bottomNegativeTextColor,
+                Color.BLACK
+            )
             negativeButton.setTextColor(negativeButtonTextColor)
         }
 
         typedArray.recycle()
+    }
+
+    private fun initListeners() {
+        binding.positiveButton.setOnClickListener {
+            this.listener?.invoke(BottomButtonAction.POSITIVE)
+        }
+        binding.negativeButton.setOnClickListener {
+            this.listener?.invoke(BottomButtonAction.NEGATIVE)
+        }
+    }
+
+    fun setListener(listener: OnBottomButtonsActionListener?) {
+        this.listener = listener
     }
 }
