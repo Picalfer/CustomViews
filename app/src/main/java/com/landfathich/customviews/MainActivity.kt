@@ -15,8 +15,11 @@ class MainActivity : AppCompatActivity() {
 
         binding.bottomButtons.setListener {
             if (it == BottomButtonAction.POSITIVE) {
+                binding.bottomButtons.setPositiveButtonText("Updated Ok")
+                binding.bottomButtons.isProgressMode = true
                 Toast.makeText(this, "Positive button pressed", Toast.LENGTH_SHORT).show()
             } else if (it == BottomButtonAction.NEGATIVE) {
+                binding.bottomButtons.setNegativeButtonText("Updated Cancel")
                 Toast.makeText(this, "Negative button pressed", Toast.LENGTH_SHORT).show()
             }
         }
